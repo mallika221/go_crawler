@@ -61,7 +61,9 @@ func TestGetURLsFromHTML(t *testing.T) {
 				return
 			}
 			if !reflect.DeepEqual(actual, tc.expected) {
-				t.Errorf("Test %d - %s: expected %v, got %v", i, tc.name, tc.expected, actual)
+				t.Errorf("Test %d - %s FAIL:\nExpected: %#v\nGot:      %#v", i, tc.name, tc.expected, actual)
+			} else {
+				t.Logf("Test %d - %s PASS", i, tc.name) // Optional: logs successful test
 			}
 		})
 	}
