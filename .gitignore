@@ -1,0 +1,12 @@
+# Go build files
+/bin/
+/pkg/
+*.exe
+*.out
+*.test
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+.DS_Store

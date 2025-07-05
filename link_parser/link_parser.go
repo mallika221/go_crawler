@@ -1,4 +1,4 @@
-package linkparser
+package link_parser
 
 import (
 	"fmt"

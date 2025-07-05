@@ -2,16 +2,26 @@ package main
 
 import (
 	"fmt"
-	"go_crawler/normalize_url"
+	"os"
 )
 
 func main() {
-	fmt.Println("hello world")
-	urlString, err := normalize_url.NormalizeUrl("https://blog.boot.dev/path/")
-	if err != nil {
-		fmt.Println("error %w ", err)
+	if len(os.Args) < 2 {
+		fmt.Println("no website provided")
 		return
-
 	}
-	fmt.Println("Normalized URL", urlString)
+	if len(os.Args) > 2 {
+		fmt.Println("too many arguments provided")
+		return
+	}
+	rawBaseURL := os.Args[1]
+	fmt.Printf("starting crawl of: %s\n", rawBaseURL)
+
+	pages := make(map[string]int)
+
+	crawlPage(rawBaseURL, rawBaseURL, pages)
+
+	for normalizedUrl, count := range pages {
+		fmt.Printf("%d - %s\n", count, normalizedUrl)
+	}
 }
